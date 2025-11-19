@@ -45,7 +45,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({ onSend }) => {
   const hasText = inputValue.trim().length > 0;
 
   return (
-    <div className="flex flex-col w-full bg-[#F7F7F7] border-t border-[#E5E5E5] pb-safe">
+    <div className="flex flex-col w-full bg-[#F7F7F7] border-[#E5E5E5] pb-safe">
       {/* Top Row: Input and Send Button */}
       <div className="flex items-center px-3 py-2 gap-3">
         <input

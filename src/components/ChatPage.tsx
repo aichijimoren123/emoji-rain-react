@@ -5,6 +5,7 @@ import { MessageList } from "./chat/MessageList";
 import { ChatInput } from "./chat/ChatInput";
 import { EmojiRain } from "./chat/EmojiRain";
 import { useStore } from "../store/useStore";
+import { WinningPopup } from "./chat/WinningPopup";
 
 // Mock avatars
 const AVATARS = {
@@ -15,8 +16,9 @@ const AVATARS = {
 
 export const ChatPage: React.FC = () => {
   const navigate = useNavigate();
-  const { eggWord } = useStore();
+  const { eggWord, rainEmojis, setBubbleColor, setBubbleSticker } = useStore();
   const [isRaining, setIsRaining] = useState(false);
+  const [showWinningPopup, setShowWinningPopup] = useState(false);
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -50,12 +52,24 @@ export const ChatPage: React.FC = () => {
 
     if (isEggWord) {
       setIsRaining(true);
+      // Check if rain contains gift emoji
+      if (rainEmojis.includes("🎁")) {
+        setTimeout(() => {
+          setShowWinningPopup(true);
+        }, 1500); // Show popup after 1.5s
+      }
     }
+  };
+
+  const handleEquip = () => {
+    setBubbleColor("#FF9F43"); // Orange
+    setBubbleSticker("🍪"); // Gingerbread Man
+    setShowWinningPopup(false);
   };
 
   return (
     <div className="flex flex-col h-dvh bg-[#F5F5F5]">
-      <div className="flex items-center justify-between px-4 py-3 bg-[#F5F5F5] border-b border-[#E5E5E5]">
+      <div className="flex items-center justify-between px-4 py-3 bg-[#F5F5F5] ">
         <div className="flex items-center gap-1">
           <button
             onClick={() => navigate({ to: "/" })}
@@ -76,6 +90,11 @@ export const ChatPage: React.FC = () => {
       <MessageList messages={messages} />
       <ChatInput onSend={handleSend} />
       <EmojiRain active={isRaining} onComplete={() => setIsRaining(false)} />
+      <WinningPopup
+        isOpen={showWinningPopup}
+        onClose={() => setShowWinningPopup(false)}
+        onEquip={handleEquip}
+      />
     </div>
   );
 };

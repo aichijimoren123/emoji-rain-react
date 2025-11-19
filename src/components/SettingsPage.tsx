@@ -11,7 +11,7 @@ export const SettingsPage: React.FC = () => {
 
   return (
     <div className="min-h-dvh bg-[#F5F6FA] text-[#333333] font-sans">
-      <div className="flex justify-between items-center px-4 py-3 bg-white text-[18px] font-medium border-b border-[#E5E5E5]">
+      <div className="flex justify-between items-center px-4 py-3 bg-white text-[18px] font-medium ">
         <div
           className="flex items-center cursor-pointer"
           onClick={() => window.history.back()}

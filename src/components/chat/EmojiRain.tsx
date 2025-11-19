@@ -16,6 +16,8 @@ interface Drop {
   rotation: number;
 }
 
+const NUMBER_OF_DROPS = 15;
+
 export const EmojiRain: React.FC<EmojiRainProps> = ({ active, onComplete }) => {
   const { rainEmojis } = useStore();
   const [drops, setDrops] = useState<Drop[]>([]);
@@ -24,7 +26,7 @@ export const EmojiRain: React.FC<EmojiRainProps> = ({ active, onComplete }) => {
     if (active) {
       // Generate drops
       const newDrops: Drop[] = [];
-      const count = 30; // Number of emojis
+      const count = NUMBER_OF_DROPS; // Number of emojis
       for (let i = 0; i < count; i++) {
         newDrops.push({
           id: i,
@@ -69,20 +71,24 @@ export const EmojiRain: React.FC<EmojiRainProps> = ({ active, onComplete }) => {
             <motion.div
               key={drop.id}
               initial={{
-                y: -50,
+                y: -100, // Start further up off-screen
                 x: `${drop.x}vw`,
-                opacity: 1,
+                opacity: 0, // Invisible initially
                 rotate: drop.rotation,
               }}
-              animate={{ y: "85vh", opacity: 0 }} // Fall to near bottom (input area)
+              animate={{
+                y: "85vh",
+                opacity: [0, 1, 1, 0], // Fade in, stay visible, fade out at end
+              }}
               transition={{
                 duration: drop.duration,
                 delay: drop.delay,
                 ease: "linear",
+                times: [0, 0.1, 0.9, 1], // Control opacity timing
               }}
               style={{
                 position: "absolute",
-                fontSize: "32px",
+                fontSize: "48px",
               }}
             >
               {drop.emoji}
