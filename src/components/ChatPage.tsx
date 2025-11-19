@@ -54,12 +54,12 @@ export const ChatPage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-[100dvh] bg-[#F5F5F5]">
+    <div className="flex flex-col h-dvh bg-[#F5F5F5]">
       <div className="flex items-center justify-between px-4 py-3 bg-[#F5F5F5] border-b border-[#E5E5E5]">
         <div className="flex items-center gap-1">
           <button
             onClick={() => navigate({ to: "/" })}
-            className="p-2 text-[#1A1A1A] active:text-[#0099FF] transition-colors"
+            className="py-2 text-[#1A1A1A] active:text-[#0099FF] transition-colors"
           >
             <ChevronLeft size={24} />
           </button>

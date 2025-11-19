@@ -1,5 +1,6 @@
 import React from "react";
 import { useStore } from "../../store/useStore";
+import { StickerSVG } from "../settings/StickerSVG";
 
 interface Message {
   id: number;
@@ -62,20 +63,8 @@ export const MessageList: React.FC<MessageListProps> = ({ messages }) => {
             >
               {msg.isEggWord && (
                 <>
-                  <div className="absolute w-[48px] h-[54px] -top-[20px] -left-[15px] flex justify-center items-center z-20">
-                    <svg
-                      width="100%"
-                      height="100%"
-                      viewBox="0 0 54 60"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="absolute top-0 left-0 drop-shadow-sm"
-                    >
-                      <path
-                        d="M26.8398 0C41.663 0.000168794 53.6796 12.0167 53.6797 26.8398C53.6797 41.6631 41.663 53.6795 26.8398 53.6797C26.4256 53.6797 26.0134 53.6696 25.6038 53.6509C25.5924 53.6504 25.5887 53.666 25.5991 53.6706C25.607 53.6742 25.6072 53.6855 25.5993 53.6893L13.6687 59.4491C11.0127 60.7313 7.92969 58.7962 7.92969 55.8469V47.5509C7.92969 46.4851 7.49353 45.4729 6.78492 44.6768C2.56443 39.9351 0 33.6872 0 26.8398C8.45279e-05 12.0166 12.0166 0 26.8398 0Z"
-                        fill="#CC561E"
-                      />
-                    </svg>
+                  <div className="absolute w-[42px] h-[42px] -top-[30px] left-[0px] flex justify-center items-center z-20">
+                    <StickerSVG />
                     <div className="z-20 text-[28px] mb-[5px]">
                       {bubbleSticker}
                     </div>
